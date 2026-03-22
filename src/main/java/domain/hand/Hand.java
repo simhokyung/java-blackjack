@@ -1,10 +1,14 @@
 package domain.hand;
 
 import domain.card.Card;
+import domain.card.CardNumber;
 
 import java.util.List;
 
 public class Hand {
+    private static final int ACE_BONUS = 10;
+    private static final int BUST_LIMIT_SCORE = 21;
+
     private final List<Card> cards;
 
     public Hand(List<Card> cards) {
@@ -16,7 +20,7 @@ public class Hand {
     }
 
     public Score getScore() {
-        return new Score(ScoreCalculator.calculate(List.copyOf(cards)));
+        return new Score(calculateScore());
     }
 
     public List<Card> getCards() {
@@ -31,4 +35,34 @@ public class Hand {
         return cards.size() == 2 && getScore().value() == 21;
     }
 
+    private int calculateScore() {
+        int baseSum = calculateBaseSum();
+        int aceCount = countAce();
+        return applyAceLogic(baseSum, aceCount);
+    }
+
+    private int calculateBaseSum() {
+        int sum = 0;
+        for (Card card : cards) {
+            sum += card.getCardNumber().getValue();
+        }
+        return sum;
+    }
+
+    private int countAce() {
+        return (int) cards.stream()
+                .map(Card::getCardNumber)
+                .filter(cardNumber -> cardNumber == CardNumber.ACE)
+                .count();
+    }
+
+    private int applyAceLogic(int baseSum, int aceCount) {
+        int score = baseSum;
+        for (int i = 0; i < aceCount; i++) {
+            if (score + ACE_BONUS <= BUST_LIMIT_SCORE) {
+                score = score + ACE_BONUS;
+            }
+        }
+        return score;
+    }
 }

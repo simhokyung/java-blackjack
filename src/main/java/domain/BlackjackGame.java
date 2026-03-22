@@ -34,7 +34,7 @@ public class BlackjackGame {
     }
 
     public boolean playDealerTurn() {
-        if (participants.cannotDealerDraw()) {
+        if (!participants.canDealerDraw()) {
             return false;
         }
         drawDealerCards();

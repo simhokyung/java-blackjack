@@ -21,7 +21,7 @@ public class GameParticipants {
         return players;
     }
 
-    public boolean cannotDealerDraw() {
-        return players.isAllBust() || !dealer.checkThreshold();
+    public boolean canDealerDraw() {
+        return !players.isAllBust() && dealer.checkThreshold();
     }
 }

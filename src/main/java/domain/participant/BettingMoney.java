@@ -19,18 +19,6 @@ public class BettingMoney {
         }
     }
 
-    public double winProfit() {
-        return money;
-    }
-
-    public double loseProfit() {
-        return -money;
-    }
-
-    public double blackjackProfit() {
-        return money * BLACKJACK_PROFIT_RATE;
-    }
-
     public int getMoney() {
         return money;
     }

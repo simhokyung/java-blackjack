@@ -62,10 +62,10 @@ public class ProfitCalculator {
     }
 
     private static boolean isDealerHigher(Player player, Dealer dealer) {
-        return player.getScoreValue() < dealer.getScoreValue() && !dealer.isBust();
+        return player.getScore().isLessThan(dealer.getScore()) && !dealer.isBust();
     }
 
     private static boolean isPlayerHigher(Player player, Dealer dealer) {
-        return player.getScoreValue() > dealer.getScoreValue();
+        return player.getScore().isGreaterThan(dealer.getScore());
     }
 }

@@ -6,4 +6,16 @@ public record Score(int value) {
     public boolean isBust() {
         return value > BUST_LIMIT_SCORE;
     }
+
+    public boolean isLessThanOrEqual(int target) {
+        return value <= target;
+    }
+
+    public boolean isGreaterThan(Score other) {
+        return value > other.value;
+    }
+
+    public boolean isLessThan(Score other) {
+        return value < other.value;
+    }
 }

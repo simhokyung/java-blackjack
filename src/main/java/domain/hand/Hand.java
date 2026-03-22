@@ -28,7 +28,7 @@ public class Hand {
     }
 
     public boolean hasScoreLessThanOrEqual(int value) {
-        return getScore().value() <= value;
+        return getScore().isLessThanOrEqual(value);
     }
 
     public boolean isBlackjack() {

@@ -2,6 +2,7 @@ package domain.participant;
 
 import domain.hand.Hand;
 import domain.card.Card;
+import domain.hand.Score;
 
 import java.util.List;
 
@@ -26,6 +27,10 @@ public abstract class Participant {
 
     public boolean isBust() {
         return hand.getScore().isBust();
+    }
+
+    public Score getScore(){
+        return hand.getScore();
     }
 
     public int getScoreValue() {

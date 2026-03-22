@@ -34,7 +34,7 @@ public class GameController {
         PlayersDto playersDto = PlayersDto.from(players);
 
         OutputView.printHandOutMessage(playersDto);
-        OutputView.printCardStatus(playersDto, ResultDto.fromDealerInitial(dealer));
+        OutputView.printCardStatus(playersDto, DealerInitialDto.from(dealer));
     }
 
     private void playGame(BlackjackGame blackjackGame) {

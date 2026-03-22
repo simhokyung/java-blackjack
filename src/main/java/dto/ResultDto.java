@@ -17,13 +17,4 @@ public record ResultDto(
 
         return new ResultDto(cardInfo, participant.getScoreValue());
     }
-
-    public static ResultDto fromDealerInitial(Dealer dealer) {
-        List<String> cardInfo = dealer.getHandCards().stream()
-                .limit(1)
-                .map(Card::getDisplayName)
-                .toList();
-
-        return new ResultDto(cardInfo, dealer.getScoreValue());
-    }
 }

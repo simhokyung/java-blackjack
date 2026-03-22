@@ -1,9 +1,6 @@
 package view;
 
-import dto.PlayerDto;
-import dto.PlayerProfitDto;
-import dto.PlayersDto;
-import dto.ResultDto;
+import dto.*;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -17,16 +14,16 @@ public class OutputView {
         System.out.print("딜러와 " + playersName + "에게 2장을 나누었습니다.");
     }
 
-    public static void printDealerCardStatus(ResultDto resultDto) {
-        System.out.printf("%n딜러카드: %s%n", getCardStatusFormat(resultDto.cards()));
+    public static void printDealerInitialCardStatus(DealerInitialDto dealerInitialDto   ) {
+        System.out.printf("%n딜러카드: %s%n", getCardStatusFormat(dealerInitialDto.cards()));
     }
 
     public static void printPlayerCardStatus(PlayerDto playerDto) {
         System.out.printf("%s카드: %s%n", playerDto.name(), getCardStatusFormat(playerDto.resultDto().cards()));
     }
 
-    public static void printCardStatus(PlayersDto playersDto, ResultDto resultDto) {
-        printDealerCardStatus(resultDto);
+    public static void printCardStatus(PlayersDto playersDto, DealerInitialDto dealerInitialDto) {
+        printDealerInitialCardStatus(dealerInitialDto);
         for (PlayerDto playerDto : playersDto.playersDto()) {
             printPlayerCardStatus(playerDto);
         }

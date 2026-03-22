@@ -50,7 +50,7 @@ public class BlackjackGame {
     }
 
     private void drawDealerCards() {
-        while (getDealer().checkThreshold()) {
+        while (getDealer().shouldDrawCard()) {
             getDealer().addHandCard(deck.draw());
         }
     }

@@ -3,7 +3,7 @@ package domain.participant;
 import domain.hand.Hand;
 
 public class Dealer extends Participant {
-    private static final int DEALER_CARD_SUM_THRESHOLD = 16;
+    private static final int DRAW_THRESHOLD = 16;
 
     private Dealer(Hand hand) {
         super(hand);
@@ -13,7 +13,7 @@ public class Dealer extends Participant {
         return new Dealer(hand);
     }
 
-    public boolean checkThreshold() {
-        return getHand().hasScoreLessThanOrEqual(DEALER_CARD_SUM_THRESHOLD);
+    public boolean shouldDrawCard() {
+        return getHand().hasScoreLessThanOrEqual(DRAW_THRESHOLD);
     }
 }

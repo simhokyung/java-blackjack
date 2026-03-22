@@ -23,8 +23,8 @@ class DealerTest {
 
     @Test
     void 딜러_16이하_여부_확인() {
-        assertThat(underThreshold.checkThreshold()).isTrue();
-        assertThat(overThreshold.checkThreshold()).isFalse();
+        assertThat(underThreshold.shouldDrawCard()).isTrue();
+        assertThat(overThreshold.shouldDrawCard()).isFalse();
     }
 
     @Test

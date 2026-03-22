@@ -24,9 +24,25 @@ public class BlackjackGame {
     }
 
     public static BlackjackGame start(List<PlayerInfo> playerInfos, Deck deck) {
-        Dealer dealer = Dealer.from(new Hand(initCards(deck)));
-        Players players = createPlayers(playerInfos, deck);
+        Dealer dealer = createDealerWithInitialHand(deck);
+        Players players = createPlayersWithInitialHand(playerInfos, deck);
         return new BlackjackGame(deck, GameParticipants.of(dealer, players));
+    }
+
+    private static Dealer createDealerWithInitialHand(Deck deck){
+        return Dealer.from(new Hand(drawInitialCards(deck)));
+    }
+
+    private static Players createPlayersWithInitialHand(List<PlayerInfo> playerInfos, Deck deck){
+        List<Player> players = new ArrayList<>();
+        for(PlayerInfo playerInfo : playerInfos){
+            players.add(createPlayerWithInitialHand(playerInfo,deck));
+        }
+        return Players.from(players);
+    }
+
+    private static Player createPlayerWithInitialHand(PlayerInfo playerInfo, Deck deck) {
+        return Player.of(playerInfo, new Hand(drawInitialCards(deck)));
     }
 
     public void addPlayerCard(Player player) {
@@ -55,22 +71,8 @@ public class BlackjackGame {
         }
     }
 
-    private static Players createPlayers(List<PlayerInfo> playerInfos, Deck deck) {
-        List<Player> players = new ArrayList<>();
-        for (PlayerInfo playerInfo : playerInfos) {
-            players.add(createPlayer(playerInfo, deck));
-        }
-        return Players.from(players);
-    }
 
-    private static Player createPlayer(PlayerInfo playerInfo, Deck deck) {
-        return Player.of(
-                playerInfo,
-                new Hand(initCards(deck))
-        );
-    }
-
-    private static List<Card> initCards(Deck deck) {
+    private static List<Card> drawInitialCards(Deck deck) {
         List<Card> cards = new ArrayList<>();
         for (int count = 0; count < INITIAL_CARD_COUNT; count++) {
             cards.add(deck.draw());

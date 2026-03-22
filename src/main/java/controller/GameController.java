@@ -4,6 +4,8 @@ import domain.BlackjackGame;
 import domain.participant.*;
 import domain.ProfitCalculator;
 import dto.*;
+import util.BettingMoneyParser;
+import util.NameParser;
 import view.InputView;
 import view.OutputView;
 
@@ -20,7 +22,8 @@ public class GameController {
     }
 
     private BlackjackGame startGame() {
-        List<String> names = InputView.readParticipants();
+        String input = InputView.readParticipants();
+        List<String> names = NameParser.parse(input);
         List<PlayerInfo> playerInfos = createPlayerInfos(names);
         return BlackjackGame.start(playerInfos);
     }
@@ -52,7 +55,8 @@ public class GameController {
     private List<PlayerInfo> createPlayerInfos(List<String> names) {
         List<PlayerInfo> playerInfos = new ArrayList<>();
         for (String name : names) {
-            Integer money = InputView.readBettingMoney(name);
+            String moneyInput = InputView.readBettingMoney(name);
+            int money = BettingMoneyParser.parse(moneyInput);
             playerInfos.add(new PlayerInfo(
                     Name.from(name),
                     BettingMoney.of(money)

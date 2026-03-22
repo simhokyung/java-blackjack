@@ -49,10 +49,6 @@ public class BlackjackGame {
         return participants.getPlayers();
     }
 
-    public List<Player> getPlayersValue() {
-        return participants.getPlayersValue();
-    }
-
     private void drawDealerCards() {
         while (getDealer().checkThreshold()) {
             getDealer().addHandCard(deck.draw());

@@ -48,7 +48,7 @@ class BlackjackGameTest {
         );
 
         BlackjackGame blackjackGame = BlackjackGame.start(playerCreationInfos, deck);
-        Player player = blackjackGame.getPlayersValue().getFirst();
+        Player player = blackjackGame.getPlayers().firstPlayers();
 
         int before = player.getHandCards().size();
         blackjackGame.addPlayerCard(player);
@@ -70,7 +70,7 @@ class BlackjackGameTest {
                 new PlayerInfo(Name.from("pobi"), BettingMoney.of(1000))
         );
         BlackjackGame blackjackGame = BlackjackGame.start(playerCreationInfos, deck);
-        Player player = blackjackGame.getPlayersValue().getFirst();
+        Player player = blackjackGame.getPlayers().firstPlayers();
         Dealer dealer = blackjackGame.getDealer();
 
         int dealerCardCountBefore = dealer.getHandCards().size();

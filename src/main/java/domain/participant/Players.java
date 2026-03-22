@@ -17,6 +17,13 @@ public class Players {
         return List.copyOf(players);
     }
 
+    public Player firstPlayers(){
+        if(players.isEmpty()){
+            throw new IllegalArgumentException("플레이어가 없습니다.");
+        }
+        return players.getFirst();
+    }
+
     public boolean isAllBust() {
         return players.stream().allMatch(Player::isBust);
     }

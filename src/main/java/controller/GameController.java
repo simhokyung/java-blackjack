@@ -48,7 +48,7 @@ public class GameController {
         Players players = blackjackGame.getPlayers();
         PlayersDto afterPlayersDto = PlayersDto.from(players);
 
-        printCardResults(ResultDto.from(dealer), afterPlayersDto);
+        OutputView.printCardResult(ResultDto.from(dealer), afterPlayersDto);
         printProfitResults(players, dealer);
     }
 
@@ -85,9 +85,6 @@ public class GameController {
         }
     }
 
-    private void printCardResults(ResultDto resultDto, PlayersDto afterPlayersDto) {
-        OutputView.printCardResult(resultDto, afterPlayersDto);
-    }
 
     private void printProfitResults(Players players, Dealer dealer) {
         String dealerProfit = ProfitCalculator.formatProfit(

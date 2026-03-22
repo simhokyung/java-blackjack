@@ -3,6 +3,7 @@ package domain.hand;
 import domain.card.Card;
 import domain.card.CardNumber;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Hand {
@@ -12,7 +13,7 @@ public class Hand {
     private final List<Card> cards;
 
     public Hand(List<Card> cards) {
-        this.cards = cards;
+        this.cards = new ArrayList<>(cards);
     }
 
     public void addCard(Card card) {
